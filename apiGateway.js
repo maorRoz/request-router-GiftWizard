@@ -7,7 +7,6 @@ const app = express();
 app.use('/', requestRouter);
 
 app.get('/*', (req, res) => {
-  console.log('got it!');
   res.sendStatus(200);
 });
 

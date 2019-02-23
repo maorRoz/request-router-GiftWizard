@@ -9,7 +9,7 @@
     "test": "mocha --recursive",
     "coverage": "nyc mocha --recursive",
     "lint": "eslint .",
-    "system_tests": "node_modules/.bin/artillery quick --count 100 -n 200 http://localhost:3000"
+    "system_tests": "node_modules/.bin/artillery quick --count 100 -n 200 http://localhost:3000/api/v1/storeId/174fba39-8054-4ab8-8599-6ad2d93351f4/giftCard"
   },
   "repository": {
     "type": "git",
