@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node mockedApiGateway.js",
-    "dev": "nodemon --inspect=5000 mockedApiGateway.js",
+    "start": "node apiGateway.js",
+    "dev": "nodemon --inspect=5000 apiGateway.js",
     "test": "mocha --recursive",
     "coverage": "nyc mocha --recursive",
     "lint": "eslint .",
