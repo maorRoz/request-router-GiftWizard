@@ -26,7 +26,7 @@ const handle = (storeId, req) => {
     addStore(storeId);
   }
 
-  eventEmitter.emit(storeId, req);
+  eventEmitter.emit(storeId, storeId, req);
 };
 
 module.exports = {
