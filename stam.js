@@ -10,6 +10,10 @@ app.use(bodyParser.json());
 
 app.use('/', requestRouter);
 
+app.get('/*', (req, res) => {
+  res.sendStatus(200);
+});
+
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(` [tap-messenger] Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));

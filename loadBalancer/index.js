@@ -2,9 +2,14 @@ const { EventEmitter } = require('events');
 
 const eventEmitter = new EventEmitter();
 
-const services = [];
+let services = [];
 
 const subscribe = service => services.push(service);
+
+const unsubscribe = (serviceToRemove) => {
+  serviceToRemove.stores.forEach(store => eventEmitter.removeAllListeners(store));
+  services = services.filter(service => service !== serviceToRemove);
+};
 
 const findMostAvailableService = () => services
   .reduce((mostAvailableService, currentService) => currentService.compareAvailability(mostAvailableService));
@@ -25,5 +30,7 @@ const handle = (storeId, req) => {
 };
 
 module.exports = {
-  handle
+  handle,
+  subscribe,
+  unsubscribe
 };

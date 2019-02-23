@@ -4,19 +4,18 @@ const loadBalancer = require('./loadBalancer');
 
 const app = express();
 
-app.all('/*storeId/:storeId*', (req, res) => {
+app.all('/*storeId/:storeId*', (req, res, next) => {
   const { storeId } = req.params;
-  console.log(storeId);
-  loadBalancer.handle(storeId);
-  res.sendStatus(200);
+  loadBalancer.handle(storeId, req);
+  next();
 });
 
-app.all('/*', (req, res) => {
-  const storeId = req.query.storeId || req.get('storeId') || req.params.storeId;
-  const message = storeId || 'no';
-  console.log(message);
-  loadBalancer.handle(storeId);
-  res.sendStatus(200);
+app.all('/*', (req, res, next) => {
+  const storeId = req.query.storeId || req.get('storeId');
+  if(storeId){
+    loadBalancer.handle(storeId, req);
+  }
+  next();
 });
 
 module.exports = app;
