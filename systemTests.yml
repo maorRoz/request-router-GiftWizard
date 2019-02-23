@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - flow:
+    - get:
+        url: "/api/v1/storeId/1/giftCard"
+    - get:
+        url: "/api/v1/campaigns?storeId=2"
+    - get:
+        url: "/api/v1"
+        headers:
+          storeId: "3"    
