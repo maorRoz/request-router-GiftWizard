@@ -2,15 +2,17 @@ const express = require('express');
 
 const loadBalancer = require('./loadBalancer');
 
-const app = express();
+const addService = service => loadBalancer.subscribe(service);
 
-app.all('/*storeId/:storeId*', (req, res, next) => {
+const requestRouter = express();
+
+requestRouter.all('/*storeId/:storeId*', (req, res, next) => {
   const { storeId } = req.params;
   loadBalancer.handle(storeId, req);
   next();
 });
 
-app.all('/*', (req, res, next) => {
+requestRouter.all('/*', (req, res, next) => {
   const storeId = req.query.storeId || req.get('storeId');
   if(storeId){
     loadBalancer.handle(storeId, req);
@@ -18,4 +20,8 @@ app.all('/*', (req, res, next) => {
   next();
 });
 
-module.exports = app;
+
+module.exports = {
+  requestRouter,
+  addService
+};

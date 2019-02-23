@@ -1,5 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
+
 const ExecutionService = require('../models/ExecutionService');
 const loadBalancer = require('../loadBalancer');
 
@@ -26,7 +27,6 @@ describe('Load Balancer Tests', () => {
   const storeId2 = '2';
   const storeId3 = '3';
   describe('Only one subscriber', () => {
-    let spy1;
     beforeEach(() => {
       spy1 = sinon.spy();
       service1 = new ExecutionService(spy1);
