@@ -3,6 +3,7 @@ const express = require('express');
 const loadBalancer = require('./loadBalancer');
 
 const addService = service => loadBalancer.subscribe(service);
+const removeService = service => loadBalancer.unsubscribe(service);
 
 const requestRouter = express();
 
@@ -23,5 +24,6 @@ requestRouter.all('/*', (req, res, next) => {
 
 module.exports = {
   requestRouter,
-  addService
+  addService,
+  removeService
 };

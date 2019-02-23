@@ -20,6 +20,18 @@ describe('Request Router Tests', () => {
     afterEach(() => loadBalancer.subscribe.restore());
   });
 
+  describe('removeService', () => {
+    it('removeService', () => {
+      let expectedService;
+      const serviceToRemove = new ExecutionService(() => undefined);
+      sinon.stub(loadBalancer, 'unsubscribe').callsFake((service) => { expectedService = service; });
+      requestRouter.removeService(serviceToRemove);
+      expect(serviceToRemove).to.deep.equal(expectedService);
+    });
+
+    afterEach(() => loadBalancer.unsubscribe.restore());
+  });
+
   describe('requestRouter', () => {
     let app;
     let expectedStoreId;
