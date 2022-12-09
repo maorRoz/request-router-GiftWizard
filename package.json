@@ -23,7 +23,7 @@
   "homepage": "https://github.com/maorRoz/request-router-GiftWizard#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "artillery": "^1.6.0-27",
